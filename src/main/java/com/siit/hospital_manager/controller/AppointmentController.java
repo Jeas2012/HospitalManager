@@ -56,4 +56,11 @@ public class AppointmentController {
         appointmentService.updateAppointment(id, updateAppointmentDto, principal.getName());
     }
 
+    @GetMapping("/history")
+    public String findHistoryByPatient(Model model, Principal principal) {
+        model.addAttribute("appointments", appointmentService.findPastAppointmentsByUserName(principal.getName()));
+        return "appointment/history";
+    }
+
+
 }
